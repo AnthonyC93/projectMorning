@@ -7,9 +7,9 @@ h1{
     color:white;
 }
 
-a{
+/* a{
     width:100%;
-}
+} */
 
 .whiteText{
     color:white;
@@ -17,5 +17,27 @@ a{
 
 nav{
     /* background-color:#c090d0; */
-    background-image:url(./assets/images/quoteBack2.jpg);
+    background-color:white;
+    /* background-image:url(./assets/images/quoteBack2.jpg); */
+}
+
+nav ul a{
+    color:#308DDA;
+}
+
+nav .brand-logo{
+    color:#3E2641;
+}
+
+li.collection-item{
+    text-decoration: line-through;
+}
+
+#toothTimerButton{
+    height:50%;
+    padding:10%;
+    line-height:1; 
+    font-size:150%;
+    width:70%;
+    background-color:rgb(196, 112, 207);
 }
