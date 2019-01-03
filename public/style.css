@@ -1,0 +1,21 @@
+body{
+    font-family: 'Abel', sans-serif;
+}
+
+h1{
+    font-family: 'Staatliches', cursive;
+    color:white;
+}
+
+a{
+    width:100%;
+}
+
+.whiteText{
+    color:white;
+}
+
+nav{
+    /* background-color:#c090d0; */
+    background-image:url(./assets/images/quoteBack2.jpg);
+}
