@@ -29,6 +29,17 @@ function updateOne(newDevoured,idChosen){
     })
 }
 
+// connection.query("SELECT * FROM ??",[todoListUser],function(err, res) {
+//     if(err) throw err;
+//     console.log(res);   
+// });
+
+// connection.query('CREATE TABLE ?? (id INT AUTO_INCREMENT NOT NULL,description VARCHAR(255),Completed BOOLEAN NOT NULL,PRIMARY KEY (id))',['coolUser123'],function(err,res){
+//     if(err)throw err;
+//     console.log(res);
+// })
+
+
 // Export the ORM object in module.exports.
 module.exports={
     selectAll:selectAll,

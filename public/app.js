@@ -1,5 +1,11 @@
 
+var userNumber;
 
+var todoListUser= "todo"+userNumber;
+console.log(todoListUser)
+console.log(typeof todoListUser)
+
+//need to add task adding functionality. when user presses 'add task', a post request is sent to user/toDoList, 
 $(document).ready(function(){
     $('.parallax').parallax();
     $('.scrollspy').scrollSpy();
@@ -16,7 +22,7 @@ $(document).ready(function(){
 });
 
 $('#toothTimerButton').on('click',function(){
-    console.log('start timer boi!')
+    console.log('start timer!')
 })
 
 
