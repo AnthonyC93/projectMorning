@@ -9,12 +9,12 @@ $(document).ready(function(){
     $('select').formSelect();
 
 
-    // if(localStorage.getItem('userMorningNumber')===null){
-    //     console.log("there is no user MorningNumber here");
-    //     $("#userQuestions").modal("open");
-    // }else{
-    //     console.log("user MorningNumber found!: "+localStorage.getItem('userMorningNumber'));
-    // }
+    if(localStorage.getItem('userMorningNumber')===null){
+        console.log("there is no user MorningNumber here");
+        $("#userQuestions").modal("open");
+    }else{
+        console.log("user MorningNumber found!: "+localStorage.getItem('userMorningNumber'));
+    }
 });
 
 $('#toothTimerButton').on('click',function(){
@@ -36,3 +36,49 @@ $('.todos').on('click','a',function(){
     })
     
 })
+
+
+
+
+//                                              Weather part
+
+
+
+
+
+
+var x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+//   x.innerHTML = "Latitude: " + position.coords.latitude + 
+//   "<br>Longitude: " + position.coords.longitude;
+
+  latitude = position.coords.latitude;
+  longitude = position.coords.longitude;
+
+  console.log(latitude);
+  console.log(longitude);
+
+  var location = {};
+  location.latitude = latitude;
+  location.longitude = longitude;
+  $.ajax({
+    type: "POST",
+    url: '/api/weather',
+    data: location,
+    success: success,
+  });
+
+  function success(res){
+    console.log("weather data :" + res.temp);
+    $("#demo").text("Temp here is : "+res.temp);
+  }
+}
