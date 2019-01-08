@@ -42,3 +42,7 @@ li.collection-item{
     background-color:rgb(196, 112, 207);
     color:black;
 }
+
+.strikethrough{
+    text-decoration: line-through;
+}
