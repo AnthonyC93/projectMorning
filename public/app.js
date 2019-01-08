@@ -9,12 +9,17 @@ $(document).ready(function(){
     $('select').formSelect();
 
 
-    // if(localStorage.getItem('userMorningNumber')===null){
-    //     console.log("there is no user MorningNumber here");
-    //     $("#userQuestions").modal("open");
-    // }else{
-    //     console.log("user MorningNumber found!: "+localStorage.getItem('userMorningNumber'));
-    // }
+    if(localStorage.getItem('userMorningNumber')===null){
+        console.log("there is no user MorningNumber here");
+        $("#userQuestions").modal("open");
+        //2 options presented to user:
+        // Enter User Number form OR
+        // Enter User Preferences form
+    }else{
+        console.log("user MorningNumber found!: "+localStorage.getItem('userMorningNumber'));
+        //send ajax call to get /userNumber
+
+    }
 });
 
 $('#toothTimerButton').on('click',function(){
@@ -36,3 +41,10 @@ $('.todos').on('click','a',function(){
     })
     
 })
+
+function createUserNumber(){
+    let newNumber = (Math.random()*99999);
+    //ajax call that runs get '/checknewNumber'
+
+    return newNumber;
+}
