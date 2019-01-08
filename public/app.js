@@ -1,9 +1,5 @@
+var userNumber=10154;
 
-var userNumber;
-
-var todoListUser= "todo"+userNumber;
-console.log(todoListUser)
-console.log(typeof todoListUser)
 
 //need to add task adding functionality. when user presses 'add task', a post request is sent to user/toDoList, 
 $(document).ready(function(){
@@ -13,12 +9,12 @@ $(document).ready(function(){
     $('select').formSelect();
 
 
-    if(localStorage.getItem('userMorningNumber')===null){
-        console.log("there is no user MorningNumber here");
-        $("#userQuestions").modal("open");
-    }else{
-        console.log("user MorningNumber found!: "+localStorage.getItem('userMorningNumber'));
-    }
+    // if(localStorage.getItem('userMorningNumber')===null){
+    //     console.log("there is no user MorningNumber here");
+    //     $("#userQuestions").modal("open");
+    // }else{
+    //     console.log("user MorningNumber found!: "+localStorage.getItem('userMorningNumber'));
+    // }
 });
 
 $('#toothTimerButton').on('click',function(){
@@ -28,7 +24,15 @@ $('#toothTimerButton').on('click',function(){
 
 $('.todos').on('click','a',function(){
     console.log('get rid of to-do item!')
-    console.log(event.target.innerHTML)
-    console.log(event.srcElement)
-    $('.todos').append("<li class='collection-item'>"+event.target.innerHTML+"</li>")
+    console.log(this.id);
+    console.log('/'+userNumber+'/'+this.id);
+
+    $.ajax('/'+userNumber+'/'+this.id, {
+        type: "PUT"
+    }).then(function(){
+        console.log('task updated!');
+        //line below not working for some reason
+        location.reload();
+    })
+    
 })
