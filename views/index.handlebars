@@ -1,1 +1,45 @@
 {{!-- where we put the specific instructions for the --}}
+
+<div class="parallax-container valign-wrapper">
+    <div class="parallax"><img src="./assets/images/weatherBack2.jpg"></div>
+    {{#if motivation}}
+      <h1 class='center-align'>{{this.motivation}}</h1>
+    {{/if}}
+</div>
+
+<div class='row section scrollspy' id='toDo'>
+    <div class='container'>
+      <div class='col s12'>
+        <ul class='todos collection'>
+          <li class="collection-header center-align"><h2>Tasks for today</h2></li>
+          {{#each todos}}
+            {{#unless completed}}
+                <a href='#!' id='{{this.id}}' class='collection-item'>{{this.description}}</a>
+            {{/unless}}
+          {{/each}}
+          {{#each todos}}
+            {{#if completed}}
+                <li id='{{this.id}}' class='strikethrough collection-item'>{{this.description}}</li>
+            {{/if}}
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="parallax-container center-align">
+    <div class="parallax"><img src="./assets/images/weatherBack2.jpg"></div>
+    <h2 class='whiteText section scrollspy' id='weather'>Weather Baby</h2>
+  </div>
+
+  <div class='row section scrollspy' id='news'>
+      <div class='container col s12 center-align section'>
+        <h2>News for the day goes here</h2>
+      </div>
+  </div>
+
+  <div class="parallax-container center-align">
+    <div class="parallax"><img src="./assets/images/weatherBack2.jpg"></div>
+    <h2 class='whiteText section scrollspy' id='toothTimer'>Teeth Brushing Button!</h2>
+    <a id="toothTimerButton" type="button" class="pulse btn btn-large hoverable white-text">Start Timer</a>
+  </div>

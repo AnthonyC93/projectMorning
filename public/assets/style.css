@@ -43,4 +43,9 @@ li.collection-item{
 }
 #randomQuotes{
     margin-left: 10%;
+    color:black;
 }
+/* 
+.strikethrough{
+    text-decoration: line-through;
+} */

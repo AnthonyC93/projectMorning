@@ -8,7 +8,7 @@
   <!--Import materialize.css-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="crossorigin="anonymous"></script>
-  <link type="text/css" rel="stylesheet" href="./style.css" />
+  <link type="text/css" rel="stylesheet" href="./assets/style.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
@@ -52,7 +52,7 @@
                   <option value="LA">LA</option>
                   <option value="ME">ME</option>
                   <option value="MD">MD</option>
-                  <option value="MA">MA</option>
+                   <option value="MA">MA</option>
                   <option value="MI">MI</option>
                   <option value="MN">MN</option>
                   <option value="MS">MS</option>
@@ -220,6 +220,32 @@
   <div class="parallax-container center-align">
     <div class="parallax"><img src="./assets/images/weatherBack2.jpg"></div>
     <h2 class='whiteText section scrollspy' id='weather'>Weather Baby</h2>
+
+    <button onclick="getLocation()">Try It</button>
+
+    <!-- weather current location tracker -->
+
+    <p id="demo"></p>
+
+    <script>
+    var x = document.getElementById("demo");
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+
+    function showPosition(position) {
+      x.innerHTML = "Latitude: " + position.coords.latitude + 
+      "<br>Longitude: " + position.coords.longitude;
+    }
+    </script>
+
+    <!-- Location tracker code ends here. -->
+
   </div>
 
   <div class='row section scrollspy' id='news'>
@@ -231,7 +257,11 @@
   <div class="parallax-container center-align">
     <div class="parallax"><img src="./assets/images/weatherBack2.jpg"></div>
     <h2 class='whiteText section scrollspy' id='toothTimer'>Teeth Brushing Button!</h2>
-    <a id="toothTimerButton" type="button" class="pulse btn btn-large hoverable white-text">Start Timer</a>
+    
+    <a id="toothTimerButton" type="button" class="pulse btn btn-large hoverable white-text"><div id="timer">Start Timer</div></a>
+    <div id="watch">
+      
+    </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
