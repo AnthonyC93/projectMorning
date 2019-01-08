@@ -18,9 +18,7 @@ $(document).ready(function(){
 });
 
 $('#toothTimerButton').on('click',function(){
-    console.log('start timer boi!');
-    $("#timer").hide();
-    $("#watch")
+    console.log('start timer!')
 })
 
 
