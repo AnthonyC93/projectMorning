@@ -199,7 +199,10 @@
 
   <div class="parallax-container valign-wrapper">
     <div class="parallax"><img src="./assets/images/weatherBack2.jpg"></div>
-    <h1 class='center-align'>Motivational Quote goes here</h1>
+
+    <!-- <h1 class='center-align' id="random-number">Motivational Quote goes here</h1> -->
+    <!-- add by jcf -->
+    <h1 class='center-align' id='randomQuotes'></h1>
   </div>
 
   <div class='row section scrollspy' id='toDo'>
@@ -233,4 +236,56 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script type="text/javascript" src="./app.js"></script>
+
+  <!-- added by jcf -->
+  <script type="text/javascript">
+  // We are given an array that holds all of the quotes available
+  var quoteList = [
+        "Make yourself a priority.",
+        "I am deliberate and afraid of nothing.",
+        "Don't wait for the right opportunity, create it.",
+        "Don't be afraid to try. Be afraid not to try.",
+        "When you have made your point stop talking." ,
+        "Make today so awesome that yesterday gets jealous.",
+        "Success in nine words: Do all the crap you don't feel like doing.",
+        "Don't worry about failures, worry about the chances you miss when you don't even try.", 
+        "A little progress each day adds up to big results.",
+        "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+        "Life is short, do stuff that matters.",
+        "Share your knowledge, it's a way to achieve immortality.",
+        "Never stop learning because life never stops teaching.",
+        "Falling down doesn't make you a failure but staying down does.",
+        "You only fail if you quit.",
+        "The best way  to predict the future is to create it.",
+        "When you feel like quitting, think about why you started.",
+        "Let your smile change the world, don't let the world change your smile.",
+        "We cannot control the wind but we can direct the sail.",
+        "You are not a true success unless you're helping others be successful.",
+        "The best preparation for tomorrow is to do your best today.",
+        "Don't watch the clock, do what it does -  keep going.",
+        "Anyone can workout for an hour, but to control what's on your plate the other 23 hours... that's hardwork.",
+        "Well done is better than well said.",
+        "Luck is when preparation meets opportunity.",
+        "Sometimes you win, sometimes you learn.",
+        "First rule of leadership: everything is your fault.",
+        "Be so busy improving yourself that you don't have time to criticize others.",
+        "Education is not preparation for life, education is life itself.",
+        "Stand up for what you believe in even if it means standing alone.",
+        "Lost time is never found again.",
+        "Complacency is our worst enemy.",
+        "Work until you no longer have to introduce yourself.",
+        "What you plant now you will harvest later."
+    ];
+
+    var todayQuote = Math.floor(Math.random() * 33) + 1;
+
+     // ... and then dump the random number into our random-number div.
+     $("#randomQuotes").text(quoteList[todayQuote]);
+
+    console.log(quoteList[todayQuote]);
+    console.log(todayQuote);
+
+
+  </script>
+
 </body>
