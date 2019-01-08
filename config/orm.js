@@ -3,7 +3,8 @@ var connection = require('./connection');
 
 // In the orm.js file, create the methods that will execute the necessary MySQL commands in the controllers. These are the methods you will need to use in order to retrieve and store data in your database.
 
-// getAllTasks()
+//------------------------------------Task Queries----------------------------------------------------------------
+
 function getAllTasks(userNumber,callBack){
     let tableName= "todo"+userNumber;
     console.log('getting all tasks from '+tableName)
@@ -17,17 +18,6 @@ function getAllTasks(userNumber,callBack){
     })
 }
 
-function getAllUserInfo(userNumber,callBack){
-    connection.query('SELECT * FROM users WHERE userNumber=?',[userNumber],function(err,data){
-        if(err)throw err;
-
-        if(typeof callBack==='function'){
-            callBack(data);
-        }
-    })
-}
-
-// addTask()
 function addTask(userNumber,taskName){
     let userTable= "todo"+userNumber;
     console.log('getting all tasks from '+userTable)
@@ -38,7 +28,6 @@ function addTask(userNumber,taskName){
     })
 }
 
-// markAsDone()
 function markAsDone(userNumber,taskId){
     let userTable= "todo"+userNumber;
     console.log('updating task '+taskId+' from '+userTable)
@@ -48,7 +37,27 @@ function markAsDone(userNumber,taskId){
     })
 }
 
-//create new user
+function clearToDoTable(userNumber){
+    let todoListUser= "todo"+userNumber;
+    connection.query('DELETE FROM ??',[todoListUser],function(err,res){
+        if(err) throw err;
+        console.log(userNumber + " table deleted!");
+    })
+}
+
+
+//------------------------------------User Queries----------------------------------------------------------------
+
+function getAllUserInfo(userNumber,callBack){
+    connection.query('SELECT * FROM users WHERE userNumber=?',[userNumber],function(err,data){
+        if(err)throw err;
+
+        if(typeof callBack==='function'){
+            callBack(data);
+        }
+    })
+}
+
 function createNewUser(newUserNumber, newUserName,newHomeCity,newWorkCity,newHomeLL,newWorkLL){
     connection.query('CREATE TABLE ?? (userNumber,userName,homeCity,workCity,homeLL,workLL',[newUserNumber, newUserName,newHomeCity,newWorkCity,newHomeLL,newWorkLL],function(err,res){
         if(err) throw err;
@@ -62,7 +71,6 @@ function createNewUser(newUserNumber, newUserName,newHomeCity,newWorkCity,newHom
     })
 }
 
-//create table when new user created.
 function createTodoTable(newTableName){
     connection.query('CREATE TABLE ?? (id INT AUTO_INCREMENT NOT NULL,description VARCHAR(255),completed BOOLEAN NOT NULL,PRIMARY KEY (id))',[newTableName],function(err,res){
         if(err)throw err;
@@ -70,6 +78,19 @@ function createTodoTable(newTableName){
     })
 }
 
+function updateUser(userNumber,newHomeCity,newWorkCity,newHomeLL,newWorkLL){
+    connection.query('UPDATE users SET homeCity=?,workCity=?,homeLL=?,workLL=? WHERE userNumber=',[newHomeCity,newWorkCity,newHomeLL,newWorkLL,userNumber],function(err,res){
+        if(err) throw err;
+        console.log("new user created!");
+    })
+}
+
+function deleteUser(userNumber){
+    connection.query('DELETE FROM users WHERE userNumber=?',[userNumber],function(err,res){
+        if (err) throw err;
+        console.log(userNumber + " deleted!");
+    })
+}
 
 // Export the ORM object in module.exports.
 module.exports={
@@ -77,5 +98,8 @@ module.exports={
     getAllUserInfo:getAllUserInfo,
     addTask:addTask,
     markAsDone:markAsDone,
-    createNewUser:createNewUser
+    createNewUser:createNewUser,
+    updateUser:updateUser,
+    deleteUser:deleteUser,
+    clearToDoTable:clearToDoTable
 }
