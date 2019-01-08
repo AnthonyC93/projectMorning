@@ -2,13 +2,13 @@ var express = require('express');
 var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("./public/assets"));
+app.use(express.static("./public"));
 
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var router = require('./controllers/burgers_controller');
+var router = require('./controllers/todosControllers');
 app.use("/",router);
 
 var PORT = process.env.PORT || 4000;  

@@ -1,5 +1,5 @@
 //setup the code to connect Node to MySQL.
-//export the connectin
+//export the connection
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
