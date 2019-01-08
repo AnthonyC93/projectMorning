@@ -1,9 +1,10 @@
 body{
-    font-family: 'Abel', sans-serif;
+    ffont-family: 'Roboto', sans-serif !important;
 }
 
 h1{
-    font-family: 'Staatliches', cursive;
+    font-family: 'Roboto', sans-serif !important;
+    font-size:60px;
     color:white;
 }
 
@@ -34,15 +35,25 @@ li.collection-item{
 }
 
 #toothTimerButton{
-    height:50%;
+    height:65%;
     padding:10%;
     line-height:1; 
-    font-size:150%;
+    font-size:75px;
     width:70%;
     background-color:rgb(196, 112, 207);
     color:black;
+<<<<<<< HEAD:public/assets/style.css
+    
+   
+    }
+.white-text{
+    font-family: 'Spicy Rice', cursive !important;
+    color:black !important;
+}
+=======
 }
 
 .strikethrough{
     text-decoration: line-through;
 }
+>>>>>>> 0a459e794ae4c0a0a0b6f13968f0c711e13597d6:public/assets/style.css

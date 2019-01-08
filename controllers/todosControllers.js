@@ -1,4 +1,29 @@
 //import express
+<<<<<<< HEAD
+//import burger.js
+var todos=require('../models/todos');
+var express=require('express');
+var app=express();
+var router = express.Router();
+
+router.get('/',function(req,res){
+    todos.all(function(data){
+        var whatever={
+            arbitraryName:data
+        }
+        res.render('index',whatever);
+    })
+})
+
+router.post('/',function(req,res){
+    console.log(req.body);
+    // todos.add(req.body.burgerNameEntered);
+    res.redirect('/');
+})
+
+router.put('/:id',function(req,res){
+    todos.update(1,req.params.id);
+=======
 //import todos.js
 var todos=require('../models/todos');
 var users = require('../models/users');
@@ -55,6 +80,7 @@ router.post('/',function(req,res){
 router.put('/:userNumber/:id',function(req,res){
     todos.markAsDone(req.params.userNumber,req.params.id);
     res.redirect('/'+req.params.userNumber)
+>>>>>>> 0a459e794ae4c0a0a0b6f13968f0c711e13597d6
 })
 
 module.exports=router;
