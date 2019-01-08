@@ -13,7 +13,14 @@
         <ul class='todos collection'>
           <li class="collection-header center-align"><h2>Tasks for today</h2></li>
           {{#each todos}}
-            <a href='#!' class='collection-item'>{{this}}</a>
+            {{#unless completed}}
+                <a href='#!' id='{{this.id}}' class='collection-item'>{{this.description}}</a>
+            {{/unless}}
+          {{/each}}
+          {{#each todos}}
+            {{#if completed}}
+                <li id='{{this.id}}' class='strikethrough collection-item'>{{this.description}}</li>
+            {{/if}}
           {{/each}}
         </ul>
       </div>
