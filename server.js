@@ -8,8 +8,13 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var router = require('./controllers/todosControllers');
+var router = require('./controllers/todosController');
+// var formRouter = require('./controllers/formController');
+// var showRouter = require('./controllers/showController');
 app.use("/",router);
+// app.use("/form",formRouter);
+// app.use("/show",showRouter);
+
 
 var PORT = process.env.PORT || 4000;  
 

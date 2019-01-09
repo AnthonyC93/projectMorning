@@ -43,6 +43,10 @@ li.collection-item{
     color:black;
 }
 
+#addTask,#clearTasks{
+    width:100%;
+}
+
 .strikethrough{
     text-decoration: line-through;
 }
