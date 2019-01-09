@@ -9,12 +9,16 @@ var todoList={
         })
     },
 
-    markAsDone:function(userNumber,idTask){
-        orm.markAsDone(userNumber,idTask);
+    markAsDone:function(userNumber,idTask,callback){
+        orm.markAsDone(userNumber,idTask,callback);
     },
 
-    addTask:function(burgerName){
-        orm.insertOne(burgerName)
+    addTask:function(userNumber,newTask,callback){
+       orm.addTask(userNumber,newTask,callback);
+    },
+    
+    clearTable:function(userNumber){
+        orm.clearToDoTable(userNumber);
     }
 }
 

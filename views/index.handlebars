@@ -1,5 +1,18 @@
 {{!-- where we put the specific instructions for the --}}
 
+ <nav>
+  <div class="nav-wrapper">
+      <!-- <a href="#" class="brand-logo">User Number: </a> -->
+      <h3 class='left-align brand-logo'>User Number: </h3>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="#toDo">To Do</a></li>
+      <li><a href="#weather">Weather</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#toothTimer">Tooth Timer</a></li>
+      </ul>
+  </div>
+</nav>
+
 <div class="parallax-container valign-wrapper">
     <div class="parallax"><img src="./assets/images/weatherBack2.jpg"></div>
     {{#if motivation}}
@@ -10,11 +23,11 @@
 <div class='row section scrollspy' id='toDo'>
     <div class='container'>
       <div class='col s12'>
-        <ul class='todos collection'>
+        <ul class='todos collection collapsible'>
           <li class="collection-header center-align"><h2>Tasks for today</h2></li>
           {{#each todos}}
             {{#unless completed}}
-                <a href='#!' id='{{this.id}}' class='collection-item'>{{this.description}}</a>
+                <a href='#!' id='{{this.id}}' class='todoTask collection-item'>{{this.description}}</a>
             {{/unless}}
           {{/each}}
           {{#each todos}}
@@ -22,7 +35,18 @@
                 <li id='{{this.id}}' class='strikethrough collection-item'>{{this.description}}</li>
             {{/if}}
           {{/each}}
+           <li>
+            <div class="collapsible-header"><i class="material-icons">add</i>ADD TASK</div>
+            <div class="collapsible-body">
+              <form>
+                <input placeholder="what are we getting done today?" id="newTask" type="text" class="validate">
+                <a type="submit" id='addTask'class='btn-large waves-effect'><i class="material-icons">add</i></a>
+                <a id='clearTasks'class='red btn-large waves-effect'><i class="material-icons">delete</i></a>
+              </form>
+            </div>
+          </li>
         </ul>
+        
       </div>
     </div>
   </div>
@@ -43,3 +67,7 @@
     <h2 class='whiteText section scrollspy' id='toothTimer'>Teeth Brushing Button!</h2>
     <a id="toothTimerButton" type="button" class="pulse btn btn-large hoverable white-text">Start Timer</a>
   </div>
+
+
+
+  <script type="text/javascript" src="./app.js"></script>

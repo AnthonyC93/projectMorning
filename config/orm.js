@@ -18,30 +18,33 @@ function getAllTasks(userNumber,callBack){
     })
 }
 
-function addTask(userNumber,taskName){
+function addTask(userNumber,taskName,callBack){
     let userTable= "todo"+userNumber;
     console.log('getting all tasks from '+userTable)
 
     console.log('going to insert '+taskName+' into '+userTable)
     connection.query("INSERT INTO ?? (description,completed) VALUES(?,0)",[userTable,taskName],function(err,result){
         if(err) throw err;
+        callBack();
     })
 }
 
-function markAsDone(userNumber,taskId){
+function markAsDone(userNumber,taskId,callback){
     let userTable= "todo"+userNumber;
     console.log('updating task '+taskId+' from '+userTable)
 
     connection.query("UPDATE ?? SET completed=1 WHERE id=?",[userTable,taskId],function(err,data){
         if(err) throw err;
+        callback();
     })
 }
 
 function clearToDoTable(userNumber){
+    console.log("ORM - going to clear table of "+userNumber)
     let todoListUser= "todo"+userNumber;
     connection.query('DELETE FROM ??',[todoListUser],function(err,res){
         if(err) throw err;
-        console.log(userNumber + " table deleted!");
+        console.log(userNumber + " table cleared!");
     })
 }
 
