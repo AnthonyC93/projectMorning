@@ -19,6 +19,12 @@ app.set("view engine", "handlebars");
 app.get("/homeMockUp", function(req, res) {
     res.sendFile(path.join(__dirname, "./public/homeMockup.html"));
 });
+var router = require('./controllers/todosController');
+// var formRouter = require('./controllers/formController');
+// var showRouter = require('./controllers/showController');
+app.use("/",router);
+// app.use("/form",formRouter);
+// app.use("/show",showRouter);
 
 
 var PORT = process.env.PORT || 4000;  

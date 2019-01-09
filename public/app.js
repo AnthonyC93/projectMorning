@@ -7,33 +7,88 @@ $(document).ready(function(){
     $('.scrollspy').scrollSpy();
     $('.modal').modal();
     $('select').formSelect();
+    $('.collapsible').collapsible();
 
 
-    if(localStorage.getItem('userMorningNumber')===null){
-        console.log("there is no user MorningNumber here");
-        $("#userQuestions").modal("open");
-    }else{
-        console.log("user MorningNumber found!: "+localStorage.getItem('userMorningNumber'));
-    }
-});
+//     if(localStorage.getItem('userMorningNumber')===null){
+//         console.log("there is no user MorningNumber here");
+//         $("#userQuestions").modal("open");
+//     }else{
+//         console.log("user MorningNumber found!: "+localStorage.getItem('userMorningNumber'));
+//     }
+// });
+    // let hasVisited=true;
+    // if(localStorage.getItem('userMorningNumber')===null){
+    //     console.log("there is no user MorningNumber here");
+        
+    //     localStorage.setItem('userMorningNumber',10154);
+    //     console.log('userNumber SET!!!!')
+    //     //2 options presented to user:
+    //     // Enter User Number form OR
+    //     // Enter User Preferences form
+    // }else{
+    //     console.log("userMorningNumber found!: "+localStorage.getItem('userMorningNumber'));
 
-$('#toothTimerButton').on('click',function(){
-    console.log('start timer!')
-})
+    //     //send ajax call to get /userNumber
+    //     // $.ajax('/'+userNumber, {
+    //     //     type: "GET"
+    //     // }).then(function(){
+    //     //     console.log('userfound!!');
+            
+    //     // })
+        
+    //         // window.location.replace('/'+localStorage.getItem('userMorningNumber'));
+        
+    // }
 
 
-$('.todos').on('click','a',function(){
-    console.log('get rid of to-do item!')
-    console.log(this.id);
-    console.log('/'+userNumber+'/'+this.id);
-
-    $.ajax('/'+userNumber+'/'+this.id, {
-        type: "PUT"
-    }).then(function(){
-        console.log('task updated!');
-        //line below not working for some reason
-        location.reload();
+    $('#toothTimerButton').on('click',function(){
+        console.log('start timer!')
     })
+
+
+    $('.todos').on('click','.todoTask',function(){
+        console.log('get rid of to-do item!')
+        console.log(this.id);
+        console.log('/'+userNumber+'/'+this.id);
+
+        $.ajax('/'+userNumber+'/'+this.id, {
+            type: "PUT"
+        })
+        .then(function() {
+            console.log('success');
+            location.reload(); 
+        })
+        
+    })
+
+    $('#clearTasks').on('click',function(){
+
+        let objectToSend = {
+            userNumber:userNumber
+        }
+        $.ajax('/todo',{
+            type:'DELETE',
+            data:objectToSend
+        })
+        .then(
+            function(){
+                console.log('table cleared!');
+                location.reload();
+            }
+        )
+    })
+
+    $('#addTask').on('click',function(){
+        event.preventDefault();
+    
+        let newTaskDescription=$('#newTask').val().trim();
+        console.log(newTaskDescription)
+        
+        let objectToSend={
+            description:newTaskDescription,
+            userNumber:userNumber
+        }
     
 })
 
@@ -82,3 +137,30 @@ function showPosition(position) {
     $("#demo").text("Temp here is : "+res.temp);
   }
 }
+        if(newTaskDescription!=''&&newTaskDescription!=undefined){
+            $.ajax('/',{
+                type:'POST',
+                data: objectToSend
+            })
+            .then(
+                function(){
+                    console.log('task added!');
+                    location.reload();
+                }
+            )
+        }
+    })
+    document.getElementById('newTask').onkeydown = function(e){
+        if(e.keyCode == 13){
+          document.getElementById('addTask').click();
+        }
+     };
+
+    function createUserNumber(){
+        let newNumber = (Math.random()*99999);
+        //ajax call that runs get '/checknewNumber'
+
+        return newNumber;
+    }
+
+});
