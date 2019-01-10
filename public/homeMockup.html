@@ -52,7 +52,7 @@
                   <option value="LA">LA</option>
                   <option value="ME">ME</option>
                   <option value="MD">MD</option>
-                   <option value="MA">MA</option>
+                  <option value="MA">MA</option>
                   <option value="MI">MI</option>
                   <option value="MN">MN</option>
                   <option value="MS">MS</option>
@@ -223,23 +223,6 @@
     <!-- weather current location tracker -->
 
     <p id="demo"></p>
-
-    <script>
-    var x = document.getElementById("demo");
-
-    function getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-      } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
-      }
-    }
-
-    function showPosition(position) {
-      x.innerHTML = "Latitude: " + position.coords.latitude + 
-      "<br>Longitude: " + position.coords.longitude;
-    }
-    </script>
 
     <!-- Location tracker code ends here. -->
 
