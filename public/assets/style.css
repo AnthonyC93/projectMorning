@@ -43,10 +43,13 @@ li.collection-item{
     color:black;
 }
 
-#addTask,#clearTasks{
+#addTask,#clearTasks,#newUserAdd{
     width:100%;
 }
-
+form{
+    padding:10% 0;
+    margin:10% 0;
+}
 .strikethrough{
     text-decoration: line-through;
 }
