@@ -6,6 +6,7 @@ var connection = require('./connection');
 //------------------------------------Task Queries----------------------------------------------------------------
 
 function getAllTasks(userNumber,callBack){
+    console.log('userNumber inside getAllTasks = ' + userNumber)
     let tableName= "todo"+userNumber;
     console.log('getting all tasks from '+tableName)
 

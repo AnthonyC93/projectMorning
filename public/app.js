@@ -1,6 +1,6 @@
 var userNumber=10154;
 
-
+console.log("HELLOOOOOOO ARE YOU TRIGGERING TWICE? ")
 //need to add task adding functionality. when user presses 'add task', a post request is sent to user/toDoList, 
 $(document).ready(function(){
     $('.parallax').parallax();
