@@ -1,13 +1,21 @@
-var express=require('express');
+var express = require('express');
 var app = express();
 var router = express.Router();
 
-router.get('/choice'),function(req,res){
-    res.render('formchoice',randomObject);
-    console.log('FORM CHOICE LOADED')
-}
-
-router.post('/new',function(req,res){
-    //var userInfo = req.body;
+router.get("/", (req,res)=>{
+    console.log('entered /form GET route')
+    res.render("formchoice",{layout: 'forms.handlebars'});
 })
-module.exports=router;
+
+router.get("/new",(req,res)=>{
+    console.log('entered /form/new GET');
+    res.render("newUser",{layout: 'forms.handlebars'});
+})
+
+router.get('/enternumber',(req,res)=>{
+    console.log('entered /form/enternumber')
+    res.render("enterUser",{layout: 'forms.handlebars'});
+})
+
+
+module.exports = router;
