@@ -7,6 +7,8 @@ var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("./public"));
+app.use("/form",express.static("./public"))
+app.use("/show",express.static("./public"))
 
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -20,11 +22,11 @@ app.get("/homeMockUp", function(req, res) {
     res.sendFile(path.join(__dirname, "./public/homeMockup.html"));
 });
 var router = require('./controllers/todosController');
-// var formRouter = require('./controllers/formController');
-// var showRouter = require('./controllers/showController');
+var formRouter = require('./controllers/formController');
+var showRouter = require('./controllers/showController');
 app.use("/",router);
-// app.use("/form",formRouter);
-// app.use("/show",showRouter);
+app.use("/form",formRouter);
+app.use("/show",showRouter);
 
 
 var PORT = process.env.PORT || 4000;  
