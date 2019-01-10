@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
     port: 3306,
     user: "root",
     password: "",
-    database: "morningUsers"
+    database: "morningApp"
 });
 
 connection.connect(function(err){
