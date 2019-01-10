@@ -56,6 +56,7 @@ app.post("/api/weather", function(req, res) {
         var weather = {};
         weather.temp = response.data.currently.temperature;
         weather.humidity= response.data.currently.humidity;
+        weather.windSpeed = response.data.currently.windSpeed;
         return res.json(weather);
     })
     .catch(function (error) {

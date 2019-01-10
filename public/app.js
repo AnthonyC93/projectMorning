@@ -10,13 +10,13 @@ $(document).ready(function(){
     $('.collapsible').collapsible();
 
 
-//     if(localStorage.getItem('userMorningNumber')===null){
-//         console.log("there is no user MorningNumber here");
-//         $("#userQuestions").modal("open");
-//     }else{
-//         console.log("user MorningNumber found!: "+localStorage.getItem('userMorningNumber'));
-//     }
-// });
+    if(localStorage.getItem('userMorningNumber')===null){
+        console.log("there is no user MorningNumber here");
+        $("#userQuestions").modal("open");
+    }else{
+        console.log("user MorningNumber found!: "+localStorage.getItem('userMorningNumber'));
+    }
+});
     // let hasVisited=true;
     // if(localStorage.getItem('userMorningNumber')===null){
     //     console.log("there is no user MorningNumber here");
@@ -149,7 +149,7 @@ function showPosition(position) {
                 }
             )
         }
-    })
+    
     document.getElementById('newTask').onkeydown = function(e){
         if(e.keyCode == 13){
           document.getElementById('addTask').click();
@@ -163,4 +163,4 @@ function showPosition(position) {
         return newNumber;
     }
 
-});
+
