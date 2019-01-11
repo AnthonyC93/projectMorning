@@ -7,8 +7,8 @@ var users = {
             callback(response);
         })
     },
-    createNewUser:function(userNumber,name,city,longitude,latitude){
-        orm.createNewUser(userNumber,name,city,longitude,latitude);
+    createNewUser:function(userNumber,name,city,longitude,latitude,callback){
+        orm.createNewUser(userNumber,name,city,longitude,latitude,callback);
     },
     updateUserInfo:function(userNumber,newCity,newLongitude,newLatitude){
         orm.updateUser(userNumber,newCity,newLongitude,newLatitude)

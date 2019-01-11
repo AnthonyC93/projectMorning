@@ -40,12 +40,13 @@ function markAsDone(userNumber,taskId,callback){
     })
 }
 
-function clearToDoTable(userNumber){
+function clearToDoTable(userNumber,callback){
     console.log("ORM - going to clear table of "+userNumber)
     let todoListUser= "todo"+userNumber;
     connection.query('DELETE FROM ??',[todoListUser],function(err,res){
         if(err) throw err;
         console.log(userNumber + " table cleared!");
+        callback();
     })
 }
 
@@ -62,7 +63,7 @@ function getAllUserInfo(userNumber,callBack){
     })
 }
 
-function createNewUser(userNumber,name,city,longitude,latitude){
+function createNewUser(userNumber,name,city,longitude,latitude,callBack){
     connection.query('INSERT INTO users (userNumber,name,city,longitude,latitude) VALUES(?,?,?,?,?)',[userNumber,name,city,parseInt(longitude),parseInt(latitude)],function(err,res){
         if(err) throw err;
         console.log("new user created! "+userNumber);
@@ -72,6 +73,7 @@ function createNewUser(userNumber,name,city,longitude,latitude){
         console.log(typeof todoListUser);
 
         createTodoTable(todoListUser);
+        callBack();
     })
 }
 

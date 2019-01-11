@@ -48,8 +48,9 @@ $('#newUserAdd').on('click',function(){
         })
         .then(
             function () {
-                //this never runs
-                location.reload();
+                //this never runs for some reason
+                // location.reload();
+                window.location.replace('/show/'+newUserNumber);
             }
         )
 
