@@ -1,13 +1,31 @@
 $('select').formSelect();
-
+let latitude;
+let longitude;
 $('#newUserAdd').on('click',function(){
     console.log('new user button clicked!');
 
     let name = $('#name').val().trim();
     let city = $('#homeCity').val().trim();
     let state =$('#state').val().trim();
-    let latitude = 77777777.7777777;
-    let longitude = 7777777.7777777;
+    
+
+    let locationToSend={
+        city:city,
+        state:state
+    }
+
+    $.ajax('/api/cityPosition', {
+        type: 'POST',
+        data: locationToSend,
+        success: success
+    });
+    
+
+    function success(response){
+        latitude = response.lat;
+        longitude = response.lng;
+
+    }
         
     if(name && city && state && latitude && longitude){
         let newUserNumber =  createUserNumber();
@@ -26,7 +44,7 @@ $('#newUserAdd').on('click',function(){
 
         $.ajax('/form/new', {
             type: 'POST',
-            data: objectToSend
+            data: objectToSend,
         })
         .then(
             function () {

@@ -108,47 +108,22 @@ $(document).ready(function () {
 
     var x = document.getElementById("demo");
 
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-    }
+    // function getLocation() {
+    //     if (navigator.geolocation) {
+    //         navigator.geolocation.getCurrentPosition(showPosition);
+    //     } else {
+    //         x.innerHTML = "Geolocation is not supported by this browser.";
+    //     }
+    // }
     
-    function showPosition(position) {
+    function getLocation() {
         //   x.innerHTML = "Latitude: " + position.coords.latitude + 
         //   "<br>Longitude: " + position.coords.longitude;
-
-
-
-
-
        /*------------------- calling api to get user info-----------------------------*/ 
-        
-        
-        $.get("/show/" + userNumber, function(resp) {
-            console.log(resp);
-            if (resp) {
-                var homeLL = resp.homeLL;
-                var homeCity = resp.homeCity;
-                
-            }
-            else {
-                $("#name").text("The force is not strong with this one. Your character was not found.");
-                $("#stats").hide();
-            }
-      });
-        
-        
-
-
       /*------------------- calling api to get user info-----------------------------*/ 
         
-        
-        
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
+        latitude = $("#lat").val();
+        longitude = $("#lng").val();
 
         console.log(latitude);
         console.log(longitude);

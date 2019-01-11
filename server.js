@@ -85,6 +85,11 @@ app.post("/api/cityPosition", function(req, res) {
         // console.log("response is : " + response.results[0]);
         console.log(response.data.results[0].locations[0].latLng.lat);
         console.log(response.data.results[0].locations[0].latLng.lng);
+        var position = {};
+        position.lat = response.data.results[0].locations[0].latLng.lat;
+        position.lng = response.data.results[0].locations[0].latLng.lng;
+        
+        return res.json(position);
 
         //console.log(util.inspect(response.data, {showHidden: false, depth: null}))
 
