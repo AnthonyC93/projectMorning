@@ -15,6 +15,10 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 // var router = require('./controllers/todosControllers');
 // app.use("/",router);
 
+const util = require('util')
+
+
+
 app.set("view engine", "handlebars");
 
 
@@ -66,3 +70,27 @@ app.post("/api/weather", function(req, res) {
     });
 });
 
+app.post("/api/cityPosition", function(req, res) {
+    // req.body hosts is equal to the JSON post sent from the user
+    // This works because of our body parsing middleware
+    // console.log(keys.weather);
+    var position = keys.weather.key;
+    var city = req.body.city;
+    var state = req.body.state;
+    console.log(position);
+    var url = 'http://www.mapquestapi.com/geocoding/v1/address?key=' + position + '&location=' + city + ',' + state;
+    console.log("url is : " +  url);
+    axios.get(url, { responseType: 'json' })
+    .then(function (response) {
+        // console.log("response is : " + response.results[0]);
+        console.log(response.data.results[0].locations[0].latLng.lat);
+        console.log(response.data.results[0].locations[0].latLng.lng);
+
+        //console.log(util.inspect(response.data, {showHidden: false, depth: null}))
+
+        
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+});

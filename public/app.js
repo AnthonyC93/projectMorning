@@ -109,7 +109,7 @@ $(document).ready(function () {
             countdown();
         });
     })
-
+})
 //------------------------------- Weather part ------------------------------------
 
     var x = document.getElementById("demo");
@@ -126,6 +126,33 @@ $(document).ready(function () {
         //   x.innerHTML = "Latitude: " + position.coords.latitude + 
         //   "<br>Longitude: " + position.coords.longitude;
 
+
+
+
+
+       /*------------------- calling api to get user info-----------------------------*/ 
+        
+        
+        $.get("/show/" + userNumber, function(resp) {
+            console.log(resp);
+            if (resp) {
+                var homeLL = resp.homeLL;
+                var homeCity = resp.homeCity;
+                
+            }
+            else {
+                $("#name").text("The force is not strong with this one. Your character was not found.");
+                $("#stats").hide();
+            }
+      });
+        
+        
+
+
+      /*------------------- calling api to get user info-----------------------------*/ 
+        
+        
+        
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
 
@@ -152,6 +179,6 @@ $(document).ready(function () {
     
 
 
-})
+
 
 
