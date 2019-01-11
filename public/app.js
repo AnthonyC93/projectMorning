@@ -1,6 +1,31 @@
-var userNumber = 10154;
+if(!localStorage.getItem('userMorningInfo')){
+    alert('no user info found. getting user info from modal.')
+    var thisUserInformation={
+        userNumber:$('#modalUserNumber').html(),
+        name: $('#nameInner').html(),
+        city:$('#cityInner').html(),
+        longitude:$('#longitudeInner').html(),
+        latitude:$('#latitudeInner').html()
+    }
+    localStorage.setItem('userMorningInfo',JSON.stringify(thisUserInformation));
+    alert('localStorage item set!')
 
-//need to add task adding functionality. when user presses 'add task', a post request is sent to user/toDoList, 
+}else{
+    let objUserInfo = JSON.parse(localStorage.getItem('userMorningInfo'));
+    alert('user info found!. fuck the modal info: '+objUserInfo);
+    var thisUserInformation={
+        userNumber:objUserInfo.userNumber,
+        name: objUserInfo.name,
+        city:objUserInfo.city,
+        longitude:objUserInfo.longitude,
+        latitude:objUserInfo.latitude
+    }
+}
+
+console.log('your user Info according to what rests in the modal is '+JSON.stringify(thisUserInformation))
+
+
+
 $(document).ready(function () {
 
     $('.parallax').parallax();
@@ -12,22 +37,22 @@ $(document).ready(function () {
     $('.todos').on('click', '.todoTask', function () {
         console.log('get rid of to-do item!')
         console.log(this.id);
-        console.log('/' + userNumber + '/' + this.id);
+        console.log('/' + thisUserInformation.userNumber + '/todo/' + this.id);
 
-        $.ajax('/' + userNumber + '/' + this.id, {
-            type: "PUT"
+        $.ajax('/' + thisUserInformation.userNumber + '/todo/' + this.id, {
+            type: "POST"
         })
-            .then(function () {
-                console.log('success');
-                location.reload();
-            })
+        .then(function () {
+            console.log('success');
+            location.reload();
+        })
 
     })
 
     $('#clearTasks').on('click', function () {
 
         let objectToSend = {
-            userNumber: userNumber
+            userNumber: thisUserInformation.userNumber
         }
         $.ajax('/todo', {
             type: 'DELETE',
@@ -35,8 +60,9 @@ $(document).ready(function () {
         })
         .then(
             function () {
-                console.log('table cleared!');
+                alert('in ajax .then and table cleared!');
                 location.reload();
+                // window.location.href="/show/"+objectToSend.userNumber;
             }
         )
     })
@@ -47,19 +73,20 @@ $(document).ready(function () {
         let newTaskDescription = $('#newTask').val().trim();
         console.log(newTaskDescription)
 
-        let objectToSend = {
-            description: newTaskDescription,
-            userNumber: userNumber
-        }
-
         if (newTaskDescription != '' && newTaskDescription != undefined) {
-            $.ajax('/', {
+   
+            let objectToSend = {
+                description: newTaskDescription,
+                userNumber: thisUserInformation.userNumber
+            }
+
+            $.ajax('/addtask', {
                 type: 'POST',
                 data: objectToSend
             })
             .then(
                 function () {
-                    console.log('task added!');
+                    console.log('ajax call POST to /addtask run');
                     location.reload();
                 }
             )
@@ -73,12 +100,6 @@ $(document).ready(function () {
     
     })
 
-    function createUserNumber() {
-        let newNumber = (Math.random() * 99999);
-        //ajax call that runs get '/checknewNumber'
-
-        return newNumber;
-    }
 //------------------------------- Tooth Timer -------------------------------------
 
     $('#toothTimerButton').on('click', function () {
@@ -111,20 +132,32 @@ $(document).ready(function () {
     })
 
 //------------------------------- Weather part ------------------------------------
+    
+    // $('#getWeather').on('click',function(){
+    //     event.preventDefault();
+    //     console.log('button clicked and function run')
 
+    //     var x = document.getElementById("demo");
+
+    //     if (navigator.geolocation) {
+    //         navigator.geolocation.getCurrentPosition(showPosition);
+    //     } else {
+    //         x.innerHTML = "Geolocation is not supported by this browser.";
+    //     }
+    // })
     var x = document.getElementById("demo");
 
     function getLocation() {
+        console.log('button clicked and function run')
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
         } else {
             x.innerHTML = "Geolocation is not supported by this browser.";
         }
     }
-    
+
     function showPosition(position) {
-        //   x.innerHTML = "Latitude: " + position.coords.latitude + 
-        //   "<br>Longitude: " + position.coords.longitude;
+        // x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
 
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
@@ -133,8 +166,8 @@ $(document).ready(function () {
         console.log(longitude);
 
         var location = {};
-        location.latitude = latitude;
-        location.longitude = longitude;
+            location.latitude = latitude;
+            location.longitude = longitude;
         $.ajax({
             type: "POST",
             url: '/api/weather',

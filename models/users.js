@@ -7,8 +7,11 @@ var users = {
             callback(response);
         })
     },
-    createNewUser:function(newUserNumber, newUserName,newHomeCity,newWorkCity,newHomeLL,newWorkLL){
-        orm.createNewUser(newUserNumber, newUserName,newHomeCity,newWorkCity,newHomeLL,newWorkLL);
+    createNewUser:function(userNumber,name,city,longitude,latitude,callback){
+        orm.createNewUser(userNumber,name,city,longitude,latitude,callback);
+    },
+    updateUserInfo:function(userNumber,newCity,newLongitude,newLatitude){
+        orm.updateUser(userNumber,newCity,newLongitude,newLatitude)
     }
 }
 

@@ -40,12 +40,13 @@ function markAsDone(userNumber,taskId,callback){
     })
 }
 
-function clearToDoTable(userNumber){
+function clearToDoTable(userNumber,callback){
     console.log("ORM - going to clear table of "+userNumber)
     let todoListUser= "todo"+userNumber;
     connection.query('DELETE FROM ??',[todoListUser],function(err,res){
         if(err) throw err;
         console.log(userNumber + " table cleared!");
+        callback();
     })
 }
 
@@ -62,28 +63,29 @@ function getAllUserInfo(userNumber,callBack){
     })
 }
 
-function createNewUser(newUserNumber, newUserName,newHomeCity,newWorkCity,newHomeLL,newWorkLL){
-    connection.query('CREATE TABLE ?? (userNumber,userName,homeCity,workCity,homeLL,workLL',[newUserNumber, newUserName,newHomeCity,newWorkCity,newHomeLL,newWorkLL],function(err,res){
+function createNewUser(userNumber,name,city,longitude,latitude,callBack){
+    connection.query('INSERT INTO users (userNumber,name,city,longitude,latitude) VALUES(?,?,?,?,?)',[userNumber,name,city,parseInt(longitude),parseInt(latitude)],function(err,res){
         if(err) throw err;
-        console.log("new user created!");
+        console.log("new user created! "+userNumber);
 
-        let todoListUser= "todo"+newUserNumber;
+        let todoListUser= "todo"+userNumber;
         console.log(todoListUser);
         console.log(typeof todoListUser);
 
         createTodoTable(todoListUser);
+        callBack();
     })
 }
 
 function createTodoTable(newTableName){
     connection.query('CREATE TABLE ?? (id INT AUTO_INCREMENT NOT NULL,description VARCHAR(255),completed BOOLEAN NOT NULL,PRIMARY KEY (id))',[newTableName],function(err,res){
         if(err)throw err;
-        console.log("new table created!");
+        console.log("new table created! "+newTableName);
     })
 }
 
-function updateUser(userNumber,newHomeCity,newWorkCity,newHomeLL,newWorkLL){
-    connection.query('UPDATE users SET homeCity=?,workCity=?,homeLL=?,workLL=? WHERE userNumber=',[newHomeCity,newWorkCity,newHomeLL,newWorkLL,userNumber],function(err,res){
+function updateUser(userNumber,newCity,newLongitude,newLatitude){
+    connection.query('UPDATE users SET city=?,longitude=?,latitude=? WHERE userNumber=?',[newCity,newLongitude,newLatitude,userNumber],function(err,res){
         if(err) throw err;
         console.log("new user created!");
     })

@@ -7,12 +7,12 @@ h1{
     color:white;
 }
 
-/* a{
-    width:100%;
-} */
-
 .whiteText{
     color:white;
+}
+
+#latitudeInner,#longitudeInner,#cityInner,#nameInner{
+    display:none;
 }
 
 nav{
@@ -24,9 +24,8 @@ nav{
 nav ul a{
     color:#308DDA;
 }
-
 nav .brand-logo{
-    color:#3E2641;
+    color:#308DDA;
 }
 
 li.collection-item{
@@ -43,10 +42,23 @@ li.collection-item{
     color:black;
 }
 
+
 #addTask,#clearTasks{
+    margin-top:2%;
     width:100%;
+}
+
+.close-modal .btn, .btn-large{
+    margin-top:2%;
+    width:80%;
+    background-color:#3D98DE;
 }
 
 .strikethrough{
     text-decoration: line-through;
 }
+
+#motivation{
+    margin-top:10%;
+}
+
