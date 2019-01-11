@@ -4,11 +4,10 @@ USE morningApp;
 
 CREATE TABLE users (
     userNumber INT NOT NULL,
-    userName VARCHAR(255),
-    homeCity VARCHAR(255),
-    workCity VARCHAR(255),
-    homeLL DECIMAL(25),
-    workLL DECIMAL(25),
+    name VARCHAR(255),
+    city VARCHAR(255),
+    longitude FLOAT(25),
+    latitude FLOAT(25),
     PRIMARY KEY(userNumber)
 );
 
