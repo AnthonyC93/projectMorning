@@ -3,6 +3,9 @@ $('select').formSelect();
 $('#newUserAdd').on('click',function(){
     console.log('new user button clicked!');
 
+    let interests = $('#multipleInterest').formSelect('getSelectedValues');
+    alert('all selected values= '+interests)
+
     let name = $('#name').val().trim();
     let city = $('#homeCity').val().trim();
     let state =$('#state').val().trim();

@@ -181,7 +181,25 @@ $(document).ready(function () {
         }
     }
 
-//------------------------------- Weather part ------------------------------------
+//------------------------------- News API ------------------------------------
+
+    $('#checkNews').on('click',function(){
+        console.log('checking news');
+
+        $.ajax({
+            url:"https://newsapi.org/v2/top-headlines?country=us&category=sports&category=business&apiKey=d5541b69da554cd18c2dccb01c5cd640",
+            method: "GET"
+          })
+        .done(function(result) {
+            console.log(result);
+        })
+        .fail(function(err) {
+            throw err;
+        });
+
+        //then render to page
+
+    })
     
 
 
