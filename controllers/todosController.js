@@ -7,7 +7,6 @@ var app = express();
 var router = express.Router();
 
 router.get('/',function(req,res){
-    //load page that checks for local storage 
     res.render('rootCheck',{layout: 'rootCheckMain.handlebars'});
 })
 
@@ -36,19 +35,5 @@ router.post('/:userNumber/todo/:id',function(req,res){
         res.redirect('/show/'+req.params.userNumber);
     });
 })
-
-
-// $.ajax('/'+this.id, {
-//     type: "PUT"
-// }).then(function(){
-//     console.log('burger eaten!');
-//     location.reload();
-// })
-
-
-// router.put('/:id',function(req,res){
-//     todos.markAsDone(req.params.userNumber,req.params.id);
-//     res.redirect('/'+req.params.userNumber)
-// })
 
 module.exports=router;
