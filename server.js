@@ -55,7 +55,7 @@ app.post("/api/weather", function(req, res) {
     // console.log(long);
     axios.get('https://api.darksky.net/forecast/' + weather + '/' + lat + ',' + long)
     .then(function (response) {
-        // console.log(response);
+        console.log(response.data.currently.icon);
         console.log("Temp : " + response.data.currently.temperature + "  Degree f");
         console.log("Humidity : " + response.data.currently.humidity);
         console.log("Wind-speed : " + response.data.currently.windSpeed);
@@ -94,6 +94,31 @@ app.post("/api/cityPosition", function(req, res) {
         //console.log(util.inspect(response.data, {showHidden: false, depth: null}))
 
         
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+});
+
+
+
+app.post("/api/news", function(req, res) {
+    // req.body hosts is equal to the JSON post sent from the user
+    // This works because of our body parsing middleware
+    // console.log(keys.weather);
+    var newskey = keys.weather.newsKey;
+    var news = req.body;
+    axios.get('https://newsapi.org/v2/everything?q=' + selection + '&apiKey=' + newskey)
+    .then(function (response) {
+        console.log(response.data.currently.icon);
+        console.log("Temp : " + response.data.currently.temperature + "  Degree f");
+        console.log("Humidity : " + response.data.currently.humidity);
+        console.log("Wind-speed : " + response.data.currently.windSpeed);
+        var weather = {};
+        weather.temp = response.data.currently.temperature;
+        weather.humidity= response.data.currently.humidity;
+        weather.windSpeed = response.data.currently.windSpeed;
+        return res.json(weather);
     })
     .catch(function (error) {
         console.log(error);

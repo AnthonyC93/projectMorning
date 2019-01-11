@@ -53,8 +53,11 @@
 
   <div class="parallax-container center-align">
     <div class="parallax"><img src="./assets/images/weatherBack2.jpg"></div>
-    <h2 class='whiteText section scrollspy' id='weather'>Weather Baby</h2>
+    <h2 class='whiteText section scrollspy' id='weather'>Weather-Information</h2>
+
     <button onclick="getLocation()">Try It</button>
+    <input type="hidden" id="longi" value='{{longitude}}'></input>
+    <input type="hidden" id="lat" value='{{latitude}}'></input>
 
     <!-- weather current location tracker -->
 
@@ -63,7 +66,7 @@
 
   <div class='row section scrollspy' id='news'>
       <div class='container col s12 center-align section'>
-        <h2>News for the day goes here</h2>
+        <h4>News for the day goes here</h4>
       </div>
   </div>
 

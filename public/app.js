@@ -109,7 +109,7 @@ $(document).ready(function () {
 })
 //------------------------------- Weather part ------------------------------------
 
-    var x = document.getElementById("demo");
+    
 
     // function getLocation() {
     //     if (navigator.geolocation) {
@@ -124,9 +124,10 @@ $(document).ready(function () {
         //   "<br>Longitude: " + position.coords.longitude;
        /*------------------- calling api to get user info-----------------------------*/ 
       /*------------------- calling api to get user info-----------------------------*/ 
-        
-        latitude = $("#lat").val();
-        longitude = $("#lng").val();
+        // var x = document.getElementById("demo");  
+
+        latitude =  $("#lat").val();
+        longitude =  $("#longi").val();
 
         console.log(latitude);
         console.log(longitude);
@@ -142,8 +143,9 @@ $(document).ready(function () {
         });
 
         function success(res) {
+            console.log(res);
             console.log("weather data :" + res.temp);
-            $("#demo").text("Temp here is : " + res.temp);
+            $("#demo").html("Temp here is : " + res.temp + "<br>" + "Humidity here is : " + res.humidity + "<br>" + "Wind-Speed is : " + res.windSpeed);
         }
     }
 
