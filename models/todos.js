@@ -17,8 +17,8 @@ var todoList={
        orm.addTask(userNumber,newTask,callback);
     },
     
-    clearTable:function(userNumber){
-        orm.clearToDoTable(userNumber);
+    clearTable:function(userNumber,callback){
+        orm.clearToDoTable(userNumber,callback);
     }
 }
 

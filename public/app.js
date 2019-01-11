@@ -1,3 +1,4 @@
+//need to get this in localStorage
 var userNumber = 10154;
 
 //need to add task adding functionality. when user presses 'add task', a post request is sent to user/toDoList, 
@@ -15,12 +16,12 @@ $(document).ready(function () {
         console.log('/' + userNumber + '/todo/' + this.id);
 
         $.ajax('/' + userNumber + '/todo/' + this.id, {
-            type: "PUT"
+            type: "POST"
         })
-            .then(function () {
-                console.log('success');
-                location.reload();
-            })
+        .then(function () {
+            console.log('success');
+            location.reload();
+        })
 
     })
 
@@ -35,8 +36,9 @@ $(document).ready(function () {
         })
         .then(
             function () {
-                console.log('table cleared!');
+                alert('in ajax .then and table cleared!');
                 location.reload();
+                // window.location.href="/show/"+objectToSend.userNumber;
             }
         )
     })
@@ -47,19 +49,20 @@ $(document).ready(function () {
         let newTaskDescription = $('#newTask').val().trim();
         console.log(newTaskDescription)
 
-        let objectToSend = {
-            description: newTaskDescription,
-            userNumber: userNumber
-        }
-
         if (newTaskDescription != '' && newTaskDescription != undefined) {
+   
+            let objectToSend = {
+                description: newTaskDescription,
+                userNumber: userNumber
+            }
+
             $.ajax('/addtask', {
                 type: 'POST',
                 data: objectToSend
             })
             .then(
                 function () {
-                    console.log('task added!');
+                    console.log('ajax call POST to /addtask run');
                     location.reload();
                 }
             )
