@@ -20,14 +20,12 @@ router.get('/enternumber',(req,res)=>{
 router.post('/new',(req,res)=>{
     console.log('entered POST /new');
     console.log('req.body = '+JSON.stringify(req.body));
+    //here is where we would run a users.checkUserNumber
 
     users.createNewUser(req.body.userNumber,req.body.name,req.body.city,req.body.longitude,req.body.latitude,function(){
         console.log('users.createNewUser in formcontrollers about to redirect')
         res.redirect('/show/'+req.body.userNumber);
     });
-    //need to figure out how to send page to show/userNumber
-
-
 })
 
 

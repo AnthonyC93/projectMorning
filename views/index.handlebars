@@ -1,22 +1,36 @@
 {{!-- where we put the specific instructions for the --}}
 
+  <div id="modalUser" class="modal center-align">
+    <div class="modal-content ">
+      <h4>Your User Number is</h4>
+      <h3 id='modalUserNumber'>{{userNumber}}</h3>
+      <h5 id='cityInner'>{{city}}</h5>
+      <p>you can use this number to get your Morning Info from wherever you are!</p>
+      <h5 id='nameInner'>{{name}}</h5>
+      <h5 id='latitudeInner'>{{latitude}}</h5>
+      <h5 id='longitudeInner'>{{longitude}}</h5>
+      <a id='closeModal'class='modal-close btn btn-large waves-effect'>Close</a> 
+    </div>
+  </div>
+
  <nav>
   <div class="nav-wrapper">
-      <!-- <a href="#" class="brand-logo">User Number: </a> -->
-      <h2 class='left-align brand-logo'>{{name}}'s morning</h2>
+      <a href='#modalUser'class="modal-trigger brand-logo">{{name}}'s morning</a>
+      {{!-- <h2 class='left-align brand-logo'>{{name}}'s morning</h2> --}}
       <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="#toDo">To Do</a></li>
       <li><a href="#weather">Weather</a></li>
       <li><a href="#news">News</a></li>
       <li><a href="#toothTimer">Tooth Timer</a></li>
+      <li><a href='#modalUser' class='modal-trigger'>View User Number</a></li>
       </ul>
   </div>
 </nav>
 
-<div class="parallax-container valign-wrapper">
-    <div class="parallax"><img src="./assets/images/weatherBack2.jpg"></div>
+<div class="parallax-container">
+    <div class="parallax valign-wrapper"><img src="./assets/images/weatherBack2.jpg"></div>
     {{#if motivation}}
-      <h1 class='center-align'>{{motivation}}</h1>
+      <h1 id='motivation'class='center-align'>{{motivation}}</h1>
     {{/if}}
 </div>
 
@@ -41,7 +55,7 @@
               <form>
                 <input placeholder="what are we getting done today?" id="newTask" type="text" class="validate">
                 <a type="submit" id='addTask'class='btn-large waves-effect'><i class="material-icons">add</i></a>
-                <a id='clearTasks'class='red btn-large waves-effect'><i class="material-icons">delete</i></a>
+                <a id='clearTasks'class='red btn-large waves-effect'>Clear all tasks</a>
               </form>
             </div>
           </li>
