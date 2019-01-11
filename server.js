@@ -12,8 +12,6 @@ app.use("/show",express.static("./public"))
 
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-// var router = require('./controllers/todosControllers');
-// app.use("/",router);
 
 const util = require('util')
 

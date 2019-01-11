@@ -50,6 +50,8 @@ $('#newUserAdd').on('click',function(){
             function () {
                 //this never runs for some reason
                 // location.reload();
+                alert('localStorage item being set: '+JSON.stringify(objectToSend))
+                localStorage.setItem('userMorningInfo',JSON.stringify(objectToSend));
                 window.location.replace('/show/'+newUserNumber);
             }
         )
@@ -62,12 +64,12 @@ $('#newUserAdd').on('click',function(){
 
 $('#searchUserNumber').on('click',function(){
     event.preventDefault();
+    //need to add some sort of validation
 
     let enteredUser = $('#userNumberEntered').val().trim();
     console.log('user number entered and it is '+enteredUser)
 
     window.location.replace('/show/'+enteredUser);
-    //need to add some sort of validation
 })
 
 function createUserNumber() {
