@@ -24,14 +24,16 @@ router.post('/addtask',function(req,res){
 router.delete('/todo',function(req,res){
     console.log('entered delete /todo route to clear table')
     userNumber=req.body.userNumber;
-    todos.clearTable(userNumber);
+    todos.clearTable(userNumber,function(){
+        res.redirect('/show/'+req.params.userNumber);
+    });
 })
 
-router.put('/:userNumber/todo/:id',function(req,res){
-    console.log('entered PUT/:userNumber/:id route for marking as updated');
+router.post('/:userNumber/todo/:id',function(req,res){
+    console.log('entered POST /:userNumber/:id route for marking as updated');
     todos.markAsDone(req.params.userNumber,req.params.id,function(){
         console.log('task updated boi')
-        // res.redirect('/'+req.params.userNumber)
+        res.redirect('/show/'+req.params.userNumber);
     });
 })
 
