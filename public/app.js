@@ -12,9 +12,9 @@ $(document).ready(function () {
     $('.todos').on('click', '.todoTask', function () {
         console.log('get rid of to-do item!')
         console.log(this.id);
-        console.log('/' + userNumber + '/' + this.id);
+        console.log('/' + userNumber + '/todo/' + this.id);
 
-        $.ajax('/' + userNumber + '/' + this.id, {
+        $.ajax('/' + userNumber + '/todo/' + this.id, {
             type: "PUT"
         })
             .then(function () {
@@ -53,7 +53,7 @@ $(document).ready(function () {
         }
 
         if (newTaskDescription != '' && newTaskDescription != undefined) {
-            $.ajax('/', {
+            $.ajax('/addtask', {
                 type: 'POST',
                 data: objectToSend
             })
@@ -73,12 +73,6 @@ $(document).ready(function () {
     
     })
 
-    function createUserNumber() {
-        let newNumber = (Math.random() * 99999);
-        //ajax call that runs get '/checknewNumber'
-
-        return newNumber;
-    }
 //------------------------------- Tooth Timer -------------------------------------
 
     $('#toothTimerButton').on('click', function () {

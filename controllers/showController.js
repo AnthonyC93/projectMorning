@@ -16,12 +16,13 @@ router.get('/:userNumber',(req,res)=>{
             console.log(userData);
             console.log(userTasks);
             arbitraryName={
-                homeLL:userData[0].homeLL,
-                workLL:userData[0].workLL,
+                name:userData[0].name,
                 todos:userTasks,
-                homeCity:userData[0].homeCity,
-                workCity:userData[0].workCity,
-                userNumber:userData[0].userNumber
+                city:userData[0].city,
+                longitude:userData[0].longitude,
+                latitude:userData[0].latitude,
+                userNumber:userData[0].userNumber,
+                motivation:'test quote'
             }
             console.log(arbitraryName);
             res.render('index',arbitraryName);

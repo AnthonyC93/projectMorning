@@ -20,6 +20,6 @@ if(localStorage.getItem('userMorningNumber')===null){
         
     // })
     
-    window.location.replace('/'+localStorage.getItem('userMorningNumber'));
+    window.location.replace('/show/'+localStorage.getItem('userMorningNumber'));
     
 }
