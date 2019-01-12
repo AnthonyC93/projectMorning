@@ -7,11 +7,14 @@ var users = {
             callback(response);
         })
     },
-    createNewUser:function(userNumber,name,city,longitude,latitude,callback){
-        orm.createNewUser(userNumber,name,city,longitude,latitude,callback);
+    createNewUser:function(userNumber,name,city,longitude,latitude,userSources,callback){
+        orm.createNewUser(userNumber,name,city,longitude,latitude,userSources,callback);
     },
-    updateUserInfo:function(userNumber,newCity,newLongitude,newLatitude){
-        orm.updateUser(userNumber,newCity,newLongitude,newLatitude)
+    updateUserInfo:function(userNumber,newCity,newLongitude,newLatitude,userSources){
+        orm.updateUser(userNumber,newCity,newLongitude,newLatitude,userSources)
+    },
+    getMotivated:function(randomIndex, callback){
+        orm.getMotivated(randomIndex,callback);
     }
 }
 

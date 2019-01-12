@@ -8,11 +8,9 @@ if(!localStorage.getItem('userMorningInfo')){
         latitude:$('#latitudeInner').html()
     }
     localStorage.setItem('userMorningInfo',JSON.stringify(thisUserInformation));
-    alert('localStorage item set!')
 
 }else{
     let objUserInfo = JSON.parse(localStorage.getItem('userMorningInfo'));
-    alert('user info found!. fuck the modal info: '+objUserInfo);
     var thisUserInformation={
         userNumber:objUserInfo.userNumber,
         name: objUserInfo.name,
@@ -22,10 +20,6 @@ if(!localStorage.getItem('userMorningInfo')){
     }
 }
 
-console.log('your user Info according to what rests in the modal is '+JSON.stringify(thisUserInformation))
-
-
-
 $(document).ready(function () {
 
     $('.parallax').parallax();
@@ -33,6 +27,7 @@ $(document).ready(function () {
     $('.modal').modal();
     $('select').formSelect();
     $('.collapsible').collapsible();
+    $('.sidenav').sidenav();
 
     $('.todos').on('click', '.todoTask', function () {
         console.log('get rid of to-do item!')
@@ -183,23 +178,6 @@ $(document).ready(function () {
 
 //------------------------------- News API ------------------------------------
 
-    $('#checkNews').on('click',function(){
-        console.log('checking news');
-
-        $.ajax({
-            url:"https://newsapi.org/v2/top-headlines?country=us&category=sports&category=business&apiKey=d5541b69da554cd18c2dccb01c5cd640",
-            method: "GET"
-          })
-        .done(function(result) {
-            console.log(result);
-        })
-        .fail(function(err) {
-            throw err;
-        });
-
-        //then render to page
-
-    })
     
 
 

@@ -63,8 +63,8 @@ function getAllUserInfo(userNumber,callBack){
     })
 }
 
-function createNewUser(userNumber,name,city,longitude,latitude,callBack){
-    connection.query('INSERT INTO users (userNumber,name,city,longitude,latitude) VALUES(?,?,?,?,?)',[userNumber,name,city,parseInt(longitude),parseInt(latitude)],function(err,res){
+function createNewUser(userNumber,name,city,longitude,latitude,userSources,callBack){
+    connection.query('INSERT INTO users (userNumber,name,city,longitude,latitude,userSources) VALUES(?,?,?,?,?,?)',[userNumber,name,city,parseInt(longitude),parseInt(latitude),userSources.toString()],function(err,res){
         if(err) throw err;
         console.log("new user created! "+userNumber);
 
@@ -77,6 +77,13 @@ function createNewUser(userNumber,name,city,longitude,latitude,callBack){
     })
 }
 
+function getMotivated(randomIndex,callback){
+    connection.query('SELECT quote FROM motivation WHERE id=?',[randomIndex],function(err,data){
+        if(err) throw err;
+        callback(data);
+    })
+}
+
 function createTodoTable(newTableName){
     connection.query('CREATE TABLE ?? (id INT AUTO_INCREMENT NOT NULL,description VARCHAR(255),completed BOOLEAN NOT NULL,PRIMARY KEY (id))',[newTableName],function(err,res){
         if(err)throw err;
@@ -84,8 +91,8 @@ function createTodoTable(newTableName){
     })
 }
 
-function updateUser(userNumber,newCity,newLongitude,newLatitude){
-    connection.query('UPDATE users SET city=?,longitude=?,latitude=? WHERE userNumber=?',[newCity,newLongitude,newLatitude,userNumber],function(err,res){
+function updateUser(userNumber,newCity,newLongitude,newLatitude,newSources){
+    connection.query('UPDATE users SET city=?,longitude=?,latitude=?,userSources=? WHERE userNumber=?',[newCity,newLongitude,newLatitude,newSources,userNumber],function(err,res){
         if(err) throw err;
         console.log("new user created!");
     })
@@ -107,5 +114,6 @@ module.exports={
     createNewUser:createNewUser,
     updateUser:updateUser,
     deleteUser:deleteUser,
-    clearToDoTable:clearToDoTable
+    clearToDoTable:clearToDoTable,
+    getMotivated:getMotivated
 }

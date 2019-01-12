@@ -13,19 +13,30 @@
     </div>
   </div>
 
- <nav>
-  <div class="nav-wrapper">
-      <a href='#modalUser'class="modal-trigger brand-logo">{{name}}'s morning</a>
-      {{!-- <h2 class='left-align brand-logo'>{{name}}'s morning</h2> --}}
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="#toDo">To Do</a></li>
-      <li><a href="#weather">Weather</a></li>
-      <li><a href="#news">News</a></li>
-      <li><a href="#toothTimer">Tooth Timer</a></li>
-      <li><a href='#modalUser' class='modal-trigger'>View User Number</a></li>
-      </ul>
-  </div>
-</nav>
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+        <a href='#modalUser'class="modal-trigger brand-logo">{{name}}'s morning</a>
+        {{!-- <h2 class='left-align brand-logo'>{{name}}'s morning</h2> --}}
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="#toDo">To Do</a></li>
+          <li><a href="#weather">Weather</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#toothTimer">Tooth Timer</a></li>
+          <li><a href='#modalUser' class='modal-trigger'>View User Number</a></li>
+        </ul>
+    </div>
+  </nav>
+</div>
+
+<ul class="sidenav" id="mobile-demo">
+   <li><a href="#toDo">To Do</a></li>
+    <li><a href="#weather">Weather</a></li>
+    <li><a href="#news">News</a></li>
+    <li><a href="#toothTimer">Tooth Timer</a></li>
+    <li><a href='#modalUser' class='modal-trigger'>View User Number</a></li>
+</ul>
 
 <div class="parallax-container">
     <div class="parallax valign-wrapper"><img src="./assets/images/weatherBack2.jpg"></div>
@@ -63,30 +74,56 @@
         
       </div>
     </div>
-  </div>
+</div>
 
-  <div class="parallax-container center-align">
-    <div class="parallax"><img src="./assets/images/weatherBack2.jpg"></div>
-    <h2 class='whiteText section scrollspy' id='weather'>Weather Baby</h2>
-    <button onclick="getLocation()">Try It</button>
-
-    <!-- weather current location tracker -->
-
-    <p id="demo"></p>
-  </div>
-
-  <div class='row section scrollspy' id='news'>
-      <div class='container col s12 center-align section'>
-        <h2>News for the day goes here</h2>
-        <a id='checkNews'class='btn btn-large'>check news</a>
-      </div>
-  </div>
-
-  <div class="parallax-container center-align">
-    <div class="parallax"><img src="./assets/images/weatherBack2.jpg"></div>
-    <h2 class='whiteText section scrollspy' id='toothTimer'>Teeth Brushing Button!</h2>
-    <a id="toothTimerButton" type="button" class="pulse btn btn-large hoverable white-text">Start Timer</a>
-  </div>
+<div class="parallax-container center-align buttonContainer">
+  <div class="parallax"><img src="./assets/images/weatherBack2.jpg"></div>
+  <h2 class='whiteText section scrollspy' id='toothTimer'>Teethbrushing Timer</h2>
+  <a id="toothTimerButton" type="button" class="btn btn-large hoverable white-text">Start Timer</a>
+</div>
 
 
-  {{!-- <script type="text/javascript" src="./app.js"></script> --}}
+<div class='row scrollspy' id='news'>
+    <div id='newsContainer'class='center-align container col s12'>
+      <h2 class='center-align'>Your Top Headlines</h2>
+      <div class='col s12 m6 center-align'>
+        {{#each articlesLeft}}
+            <div class="card large cardLeft hoverable left">
+              <div class="card-image">
+                <img src="{{this.urlToImage}}">
+                <span class="card-title">{{this.source.name}}</span>
+              </div>
+              <div class="card-content">
+                <a target="_blank" href="{{this.url}}" class="card-title">{{this.title}}</a>
+                <p>{{this.description}}</p>
+              </div>
+            </div>
+        {{/each}}
+      </div>   
+        <div class='col s12 m6 center-align'>
+        {{#each articlesRight}}
+            <div class="card large hoverable right">
+              <div class="card-image">
+                <img src="{{this.urlToImage}}">
+                <span class="card-title">{{this.source.name}}</span>
+              </div>
+              <div class="card-content">
+                <a target="_blank" href="{{this.url}}" class="card-title">{{this.title}}</a>
+                <p>{{this.description}}</p>
+              </div>
+            </div>
+        {{/each}}
+      </div>          
+      
+    </div>
+</div>
+
+{{!-- <div class="parallax-container center-align">
+  <div class="parallax"><img src="./assets/images/weatherBack2.jpg"></div>
+  <h2 class='whiteText section scrollspy' id='weather'>Weather Baby</h2>
+  <button onclick="getLocation()">Try It</button>
+
+  <!-- weather current location tracker -->
+
+  <p id="demo"></p>
+</div> --}}

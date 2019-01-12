@@ -21,7 +21,7 @@ nav{
     /* background-image:url(./assets/images/quoteBack2.jpg); */
 }
 
-nav ul a{
+nav ul a, nav a{
     color:#308DDA;
 }
 nav .brand-logo{
@@ -33,13 +33,17 @@ li.collection-item{
 }
 
 #toothTimerButton{
-    height:50%;
+    height:30%;
     padding:10%;
     line-height:1; 
     font-size:150%;
-    width:70%;
+    width:60%;
     background-color:rgb(196, 112, 207);
     color:black;
+}
+
+.buttonContainer{
+    height:600px;
 }
 
 
@@ -62,3 +66,8 @@ li.collection-item{
     margin-top:10%;
 }
 
+#newsContainer{
+    margin-left:15%;
+    margin-right:auto;
+    overflow: hidden;
+} 
