@@ -5,7 +5,7 @@ $('#newUserAdd').on('click',function(){
     let name = $('#name').val().trim();
     let city = $('#homeCity').val().trim();
     let state =$('#state').val().trim();
-    let latitude = 77777777.7777777;
+    let latitude = 7777777.7777777;
     let longitude = 7777777.7777777;
     let sources = $('#sourceSelect').formSelect('getSelectedValues');
         

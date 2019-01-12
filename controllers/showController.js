@@ -3,7 +3,6 @@ const NewsAPI = require('newsapi');
 // const newsapi = new NewsAPI('d5541b69da554cd18c2dccb01c5cd640');
 const newsApiKey = require('../config/keys').newsKey;
 const newsapi = new NewsAPI(newsApiKey);
-console.log('news key is '+newsapi)
 
 var express=require('express');
 var users = require('../models/users');

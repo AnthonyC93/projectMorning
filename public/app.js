@@ -28,6 +28,11 @@ $(document).ready(function () {
     $('.collapsible').collapsible();
     $('.sidenav').sidenav();
 
+    $('#todoList').on('click','a',function(){
+        $('#todoList').sidenav('close');
+    })
+
+
     $('.todos').on('click', '.todoTask', function () {
         console.log('get rid of to-do item!')
         console.log(this.id);
@@ -95,13 +100,18 @@ $(document).ready(function () {
 
 //------------------------------- Tooth Timer -------------------------------------
 
+    
+    var isRunning=false;
     $('#toothTimerButton').on('click', function () {
-        console.log('start timer!')
+        console.log('start timer!');
+        if(!isRunning) countdown();
         var interval;
         function countdown() {
+            $("#toothTimerButton").text("2:00");
             clearInterval(interval);
+            isRunning=true;
             interval = setInterval(function () {
-                var timer = $("#toothTimerButton").html();
+                var timer = $("#toothTimerButton").text();
                 timer = timer.split(':');
                 var minutes = timer[0];
                 var seconds = timer[1];
@@ -113,16 +123,35 @@ $(document).ready(function () {
                 }
                 else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
 
-                $("#toothTimerButton").html(minutes + ':' + seconds);
+                $("#toothTimerButton").text(minutes + ':' + seconds);
 
-                if (minutes == 0 && seconds == 0) clearInterval(interval);
+                if (minutes == 0 && seconds == 0){
+
+                    $("#toothTimerButton").text("2:00");
+
+                    $("#toothTimerButton").text("All Done!")
+                    clearInterval(interval);
+                    blink3();
+                }
             }, 1000);
         }
-        $("#toothTimerButton").click(function () {
-            $("#toothTimerButton").text("2:00");
-            countdown();
-        });
+        function blink3(){
+            let count = 0;
+            blink = setInterval(function(){
+                count++;
+                $('#toothTimerButton').toggle();
+
+                if(count===6){
+                    clearInterval(blink);
+                    $("#toothTimerButton").text("Start Timer");
+                    isRunning=false;
+                    return;
+                }
+            },500)
+        }
     })
+
+
 
 //------------------------------- Weather part ------------------------------------
     

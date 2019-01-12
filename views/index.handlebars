@@ -18,7 +18,7 @@
     <div class="nav-wrapper">
         <a href='#modalUser'class="modal-trigger brand-logo">{{name}}'s morning</a>
         {{!-- <h2 class='left-align brand-logo'>{{name}}'s morning</h2> --}}
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="#" data-target="todoList" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="#toDo">To Do</a></li>
           {{!-- <li><a href="#weather">Weather</a></li> --}}
@@ -30,7 +30,7 @@
   </nav>
 </div>
 
-<ul class="sidenav" id="mobile-demo">
+<ul id='todoList'class="sidenav">
    <li><a href="#toDo">To Do</a></li>
     {{!-- <li><a href="#weather">Weather</a></li> --}}
     <li><a href="#news">News</a></li>
@@ -95,7 +95,7 @@
               </div>
               <div class="card-content">
                 <a target="_blank" href="{{this.url}}" class="card-title">{{this.title}}</a>
-                <p>{{this.description}}</p>
+                <p class='newsSummary'>{{this.description}}</p>
               </div>
             </div>
         {{/each}}
@@ -109,7 +109,7 @@
               </div>
               <div class="card-content">
                 <a target="_blank" href="{{this.url}}" class="card-title">{{this.title}}</a>
-                <p>{{this.description}}</p>
+                <p class='newsSummary'>{{this.description}}</p>
               </div>
             </div>
         {{/each}}
