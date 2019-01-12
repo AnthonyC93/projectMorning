@@ -1,5 +1,4 @@
 if(!localStorage.getItem('userMorningInfo')){
-    alert('no user info found. getting user info from modal.')
     var thisUserInformation={
         userNumber:$('#modalUserNumber').html(),
         name: $('#nameInner').html(),
@@ -55,7 +54,6 @@ $(document).ready(function () {
         })
         .then(
             function () {
-                alert('in ajax .then and table cleared!');
                 location.reload();
                 // window.location.href="/show/"+objectToSend.userNumber;
             }

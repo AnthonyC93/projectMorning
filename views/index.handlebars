@@ -1,17 +1,17 @@
 {{!-- where we put the specific instructions for the --}}
 
-  <div id="modalUser" class="modal center-align">
-    <div class="modal-content ">
-      <h4>Your User Number is</h4>
-      <h3 id='modalUserNumber'>{{userNumber}}</h3>
-      <h5 id='cityInner'>{{city}}</h5>
-      <p>you can use this number to get your Morning Info from wherever you are!</p>
-      <h5 id='nameInner'>{{name}}</h5>
-      <h5 id='latitudeInner'>{{latitude}}</h5>
-      <h5 id='longitudeInner'>{{longitude}}</h5>
-      <a id='closeModal'class='modal-close btn btn-large waves-effect'>Close</a> 
-    </div>
+<div id="modalUser" class="modal center-align">
+  <div class="modal-content ">
+    <h4>Your User Number is</h4>
+    <h3 id='modalUserNumber'>{{userNumber}}</h3>
+    <h5 id='cityInner'>{{city}}</h5>
+    <p>you can use this number to get your Morning Info from wherever you are!</p>
+    <h5 id='nameInner'>{{name}}</h5>
+    <h5 id='latitudeInner'>{{latitude}}</h5>
+    <h5 id='longitudeInner'>{{longitude}}</h5>
+    <a id='closeModal'class='modal-close btn btn-large waves-effect'>Close</a> 
   </div>
+</div>
 
 <div class="navbar-fixed">
   <nav>
@@ -21,7 +21,7 @@
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="#toDo">To Do</a></li>
-          <li><a href="#weather">Weather</a></li>
+          {{!-- <li><a href="#weather">Weather</a></li> --}}
           <li><a href="#news">News</a></li>
           <li><a href="#toothTimer">Tooth Timer</a></li>
           <li><a href='#modalUser' class='modal-trigger'>View User Number</a></li>
@@ -32,7 +32,7 @@
 
 <ul class="sidenav" id="mobile-demo">
    <li><a href="#toDo">To Do</a></li>
-    <li><a href="#weather">Weather</a></li>
+    {{!-- <li><a href="#weather">Weather</a></li> --}}
     <li><a href="#news">News</a></li>
     <li><a href="#toothTimer">Tooth Timer</a></li>
     <li><a href='#modalUser' class='modal-trigger'>View User Number</a></li>

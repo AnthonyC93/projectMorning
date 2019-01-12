@@ -23,7 +23,7 @@ $('#newUserAdd').on('click',function(){
             longitude:longitude,
             sources:sources
         }
-        alert('object being sent from form.js: '+JSON.stringify(objectToSend));
+        // alert('object being sent from form.js: '+JSON.stringify(objectToSend));
 
         $.ajax('/form/new', {
             type: 'POST',
@@ -33,7 +33,7 @@ $('#newUserAdd').on('click',function(){
             function () {
                 //this never runs for some reason
                 // location.reload();
-                alert('localStorage item being set: '+JSON.stringify(objectToSend))
+                // alert('localStorage item being set: '+JSON.stringify(objectToSend))
                 localStorage.setItem('userMorningInfo',JSON.stringify(objectToSend));
                 window.location.replace('/show/'+newUserNumber);
             }
