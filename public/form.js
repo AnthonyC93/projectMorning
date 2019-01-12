@@ -2,14 +2,14 @@ $('select').formSelect();
 
 $('#newUserAdd').on('click',function(){
     console.log('new user button clicked!');
-
     let name = $('#name').val().trim();
     let city = $('#homeCity').val().trim();
     let state =$('#state').val().trim();
     let latitude = 77777777.7777777;
     let longitude = 7777777.7777777;
+    let sources = $('#sourceSelect').formSelect('getSelectedValues');
         
-    if(name && city && state && latitude && longitude){
+    if(name && city && state && latitude && longitude && sources.length>0){
         let newUserNumber =  createUserNumber();
         console.log('new user number is: '+newUserNumber);
         
@@ -20,9 +20,10 @@ $('#newUserAdd').on('click',function(){
             name:name,
             city:cityState,
             latitude:latitude,
-            longitude:longitude
+            longitude:longitude,
+            sources:sources
         }
-        console.log('object being sent from form.js: '+JSON.stringify(objectToSend));
+        // alert('object being sent from form.js: '+JSON.stringify(objectToSend));
 
         $.ajax('/form/new', {
             type: 'POST',
@@ -32,7 +33,7 @@ $('#newUserAdd').on('click',function(){
             function () {
                 //this never runs for some reason
                 // location.reload();
-                alert('localStorage item being set: '+JSON.stringify(objectToSend))
+                // alert('localStorage item being set: '+JSON.stringify(objectToSend))
                 localStorage.setItem('userMorningInfo',JSON.stringify(objectToSend));
                 window.location.replace('/show/'+newUserNumber);
             }
@@ -40,6 +41,7 @@ $('#newUserAdd').on('click',function(){
 
     }else{
         //give user feedback and let them know something is missing/invalid
+        alert('Please fill in all fields to proceed')
     }
 
 })
@@ -49,7 +51,8 @@ $('#searchUserNumber').on('click',function(){
     //need to add some sort of validation
 
     let enteredUser = $('#userNumberEntered').val().trim();
-    console.log('user number entered and it is '+enteredUser)
+    console.log('user number entered and it is '+enteredUser);
+    localStorage.removeItem('userMorningInfo');
 
     window.location.replace('/show/'+enteredUser);
 })

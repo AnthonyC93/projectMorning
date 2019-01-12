@@ -1,5 +1,4 @@
 if(!localStorage.getItem('userMorningInfo')){
-    alert('no user info found. getting user info from modal.')
     var thisUserInformation={
         userNumber:$('#modalUserNumber').html(),
         name: $('#nameInner').html(),
@@ -8,11 +7,9 @@ if(!localStorage.getItem('userMorningInfo')){
         latitude:$('#latitudeInner').html()
     }
     localStorage.setItem('userMorningInfo',JSON.stringify(thisUserInformation));
-    alert('localStorage item set!')
 
 }else{
     let objUserInfo = JSON.parse(localStorage.getItem('userMorningInfo'));
-    alert('user info found!. fuck the modal info: '+objUserInfo);
     var thisUserInformation={
         userNumber:objUserInfo.userNumber,
         name: objUserInfo.name,
@@ -22,10 +19,6 @@ if(!localStorage.getItem('userMorningInfo')){
     }
 }
 
-console.log('your user Info according to what rests in the modal is '+JSON.stringify(thisUserInformation))
-
-
-
 $(document).ready(function () {
 
     $('.parallax').parallax();
@@ -33,6 +26,7 @@ $(document).ready(function () {
     $('.modal').modal();
     $('select').formSelect();
     $('.collapsible').collapsible();
+    $('.sidenav').sidenav();
 
     $('.todos').on('click', '.todoTask', function () {
         console.log('get rid of to-do item!')
@@ -60,7 +54,6 @@ $(document).ready(function () {
         })
         .then(
             function () {
-                alert('in ajax .then and table cleared!');
                 location.reload();
                 // window.location.href="/show/"+objectToSend.userNumber;
             }
@@ -181,7 +174,8 @@ $(document).ready(function () {
         }
     }
 
-//------------------------------- Weather part ------------------------------------
+//------------------------------- News API ------------------------------------
+
     
 
 
