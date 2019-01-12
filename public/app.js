@@ -143,11 +143,13 @@ $(document).ready(function () {
 
     $('#toothTimerButton').on('click', function () {
         console.log('start timer!')
+        $("#toothTimerButton").text("2:00");
+        countdown();
         var interval;
         function countdown() {
             clearInterval(interval);
             interval = setInterval(function () {
-                var timer = $("#toothTimerButton").html();
+                var timer = $("#toothTimerButton").text();
                 timer = timer.split(':');
                 var minutes = timer[0];
                 var seconds = timer[1];
@@ -159,15 +161,18 @@ $(document).ready(function () {
                 }
                 else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
 
-                $("#toothTimerButton").html(minutes + ':' + seconds);
+                $("#toothTimerButton").text(minutes + ':' + seconds);
 
-                if (minutes == 0 && seconds == 0) clearInterval(interval);
+                if (minutes == 0 && seconds == 0){
+                    
+                    $("#toothTimerButton").text("2:00");
+                    
+                    $("#toothTimerButton").text("I think you should be done...!!")
+                    clearInterval(interval);
+                    return;
+                }
             }, 1000);
         }
-        $("#toothTimerButton").click(function () {
-            $("#toothTimerButton").text("2:00");
-            countdown();
-        });
     })
 })
 //------------------------------- Weather part ------------------------------------
