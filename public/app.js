@@ -28,11 +28,50 @@ console.log('your user Info according to what rests in the modal is '+JSON.strin
 
 $(document).ready(function () {
 
+    interval = setInterval(startTicker, 3000);
+  
+    $("#newsNew").hover(function(){
+        stopTicker();
+    }, 
+    function(){
+        interval = setInterval(startTicker, 3000);
+    });
+    
+    
+    function blinker() {
+        $('.blink_me').fadeOut(500);
+        $('.blink_me').fadeIn(500);
+    }
+
+    setInterval(blinker, 1000);
+
+
+
+
     $('.parallax').parallax();
     $('.scrollspy').scrollSpy();
     $('.modal').modal();
     $('select').formSelect();
-    $('.collapsible').collapsible();
+    $('.collapsible').collapsible();    
+
+//            Here interstsToSend will be fetched from user-info.
+
+    var interstsToSend = "health+business";
+    $.ajax('/api/news', {
+        type: "POST",
+        data: interstsToSend,
+        success : newsSuccess
+    })
+   
+    function newsSuccess(response){
+        console.log(response);
+        //populate news in required div
+       $.each(response.news,function(index,value){
+        var list = "<li class='list'>" + value + "</li>";
+        $("#newsNew").append(list);
+       });
+    }
+
 
     $('.todos').on('click', '.todoTask', function () {
         console.log('get rid of to-do item!')
@@ -158,6 +197,17 @@ $(document).ready(function () {
             console.log("weather data :" + res.temp);
             $("#demo").html("Temp here is : " + res.temp + "<br>" + "Humidity here is : " + res.humidity + "<br>" + "Wind-Speed is : " + res.windSpeed);
         }
+    }
+
+    function startTicker(){
+        $("#newsNew li:first").slideUp(function(){
+            $(this).appendTo($("#newsNew")).slideDown();
+        });
+    }
+    
+    function stopTicker()
+    {
+        clearInterval(interval);
     }
 
 //------------------------------- Weather part ------------------------------------

@@ -105,18 +105,23 @@ app.post("/api/news", function(req, res) {
     // This works because of our body parsing middleware
     // console.log(keys.weather);
     var newskey = keys.weather.newsKey;
-    var news = req.body;
+    // var selection = req.body;
+    var selection = "business+sports";
     axios.get('https://newsapi.org/v2/everything?q=' + selection + '&apiKey=' + newskey)
     .then(function (response) {
-        console.log(response.data.currently.icon);
-        console.log("Temp : " + response.data.currently.temperature + "  Degree f");
-        console.log("Humidity : " + response.data.currently.humidity);
-        console.log("Wind-speed : " + response.data.currently.windSpeed);
-        var weather = {};
-        weather.temp = response.data.currently.temperature;
-        weather.humidity= response.data.currently.humidity;
-        weather.windSpeed = response.data.currently.windSpeed;
-        return res.json(weather);
+        var articles = response.data.articles;
+        console.log(articles[0].title);
+
+        //create an empty array for titles
+        //iterate over articles, and push each title into array titles.
+
+        var newsArray = [];
+        for(var i=0; i<articles.length; i++){
+            newsArray.push(articles[i].title);
+        }
+        console.log(newsArray);
+        var newsObj = {news:newsArray}
+        return res.json(newsObj);
     })
     .catch(function (error) {
         console.log(error);

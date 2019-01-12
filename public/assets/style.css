@@ -77,4 +77,26 @@ li.collection-item{
 #motivation{
     margin-top:10%;
 }
+#newsNew{
+    list-style-type: none;
+    padding: 10px;
+    
+}
+.blink_me{
+    background-color: #a3498c;
+}
+#newsNew li{
+    font-family: 'Times New Roman', Times, serif;
+    border-bottom: 2px solid black;
+}
+#news{
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: justify;
+    height: 200px;
+    overflow: hidden;
+    background-image: url(./assets/images/weatherBack2.jpg);
+}
 
