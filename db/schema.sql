@@ -1,4 +1,3 @@
-DROP DATABASE IF EXISTS morningApp;
 CREATE DATABASE morningApp;
 USE morningApp;
 
