@@ -3,3 +3,8 @@ exports.weather = {
     key: process.env.position_api,
     newsKey: process.env.news_api
 };
+    
+
+module.exports={
+    newsKey:process.env.NEWS_API_KEY
+}

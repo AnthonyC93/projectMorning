@@ -1,5 +1,4 @@
 if(!localStorage.getItem('userMorningInfo')){
-    alert('no user info found. getting user info from modal.')
     var thisUserInformation={
         userNumber:$('#modalUserNumber').html(),
         name: $('#nameInner').html(),
@@ -8,11 +7,9 @@ if(!localStorage.getItem('userMorningInfo')){
         latitude:$('#latitudeInner').html()
     }
     localStorage.setItem('userMorningInfo',JSON.stringify(thisUserInformation));
-    alert('localStorage item set!')
 
 }else{
     let objUserInfo = JSON.parse(localStorage.getItem('userMorningInfo'));
-    alert('user info found!. fuck the modal info: '+objUserInfo);
     var thisUserInformation={
         userNumber:objUserInfo.userNumber,
         name: objUserInfo.name,
@@ -21,10 +18,6 @@ if(!localStorage.getItem('userMorningInfo')){
         latitude:objUserInfo.latitude
     }
 }
-
-console.log('your user Info according to what rests in the modal is '+JSON.stringify(thisUserInformation))
-
-
 
 $(document).ready(function () {
 
@@ -52,25 +45,12 @@ $(document).ready(function () {
     $('.scrollspy').scrollSpy();
     $('.modal').modal();
     $('select').formSelect();
-    $('.collapsible').collapsible();    
+    $('.collapsible').collapsible();
+    $('.sidenav').sidenav();
 
-//            Here interstsToSend will be fetched from user-info.
-
-    var interstsToSend = "health+business";
-    $.ajax('/api/news', {
-        type: "POST",
-        data: interstsToSend,
-        success : newsSuccess
+    $('#todoList').on('click','a',function(){
+        $('#todoList').sidenav('close');
     })
-   
-    function newsSuccess(response){
-        console.log(response);
-        //populate news in required div
-       $.each(response.news,function(index,value){
-        var list = "<li class='list'>" + value + "</li>";
-        $("#newsNew").append(list);
-       });
-    }
 
 
     $('.todos').on('click', '.todoTask', function () {
@@ -99,7 +79,6 @@ $(document).ready(function () {
         })
         .then(
             function () {
-                alert('in ajax .then and table cleared!');
                 location.reload();
                 // window.location.href="/show/"+objectToSend.userNumber;
             }
@@ -141,13 +120,16 @@ $(document).ready(function () {
 
 //------------------------------- Tooth Timer -------------------------------------
 
+    
+    var isRunning=false;
     $('#toothTimerButton').on('click', function () {
-        console.log('start timer!')
-        $("#toothTimerButton").text("2:00");
-        countdown();
+        console.log('start timer!');
+        if(!isRunning) countdown();
         var interval;
         function countdown() {
+            $("#toothTimerButton").text("2:00");
             clearInterval(interval);
+            isRunning=true;
             interval = setInterval(function () {
                 var timer = $("#toothTimerButton").text();
                 timer = timer.split(':');
@@ -164,17 +146,33 @@ $(document).ready(function () {
                 $("#toothTimerButton").text(minutes + ':' + seconds);
 
                 if (minutes == 0 && seconds == 0){
-                    
+
                     $("#toothTimerButton").text("2:00");
-                    
-                    $("#toothTimerButton").text("I think you should be done...!!")
+
+                    $("#toothTimerButton").text("All Done!")
                     clearInterval(interval);
-                    return;
+                    blink3();
                 }
             }, 1000);
         }
+        function blink3(){
+            let count = 0;
+            blink = setInterval(function(){
+                count++;
+                $('#toothTimerButton').toggle();
+
+                if(count===6){
+                    clearInterval(blink);
+                    $("#toothTimerButton").text("Start Timer");
+                    isRunning=false;
+                    return;
+                }
+            },500)
+        }
     })
-})
+
+
+});
 //------------------------------- Weather part ------------------------------------
 
 

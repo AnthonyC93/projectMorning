@@ -21,11 +21,15 @@ nav{
     /* background-image:url(./assets/images/quoteBack2.jpg); */
 }
 
-nav ul a{
+nav ul a, nav a,.collection a.collection-item{
     color:#308DDA;
+}
+.collection a.collection-item{
+    color:rgb(196, 112, 207);
 }
 nav .brand-logo{
     color:#308DDA;
+    margin-left:10px;
 }
 
 li.collection-item{
@@ -33,15 +37,21 @@ li.collection-item{
 }
 
 #toothTimerButton{
-    height:50%;
+    height:30%;
+    padding:10%;
     line-height:1; 
+    /* font-size:150%; */
     font-size:50px;
-    width:70%;
+    width:60%;
     background-color:rgb(196, 112, 207);
     color:black;
-    size: 50px;
+    /* size: 50px; */
     text-align: center;
     padding-top: 7%;
+}
+
+.buttonContainer{
+    height:600px;
 }
 
 
@@ -78,6 +88,17 @@ li.collection-item{
 
 #motivation{
     margin-top:10%;
+    font-size: 80px;
+}
+
+#newsContainer{
+    margin-left:12%;
+    margin-right:auto;
+    overflow: hidden;
+} 
+
+.card .card-content p {
+    margin-top:20px;
 }
 #newsNew{
     list-style-type: none;
@@ -102,3 +123,6 @@ li.collection-item{
     background-image: url(./assets/images/weatherBack2.jpg);
 }
 
+.card .card-title,#toothtimer{
+    font-weight: bold;
+}

@@ -2,7 +2,7 @@ require("dotenv").config();
 var express = require('express');
 var path = require("path");
 var keys = require("./config/keys.js");
-const axios = require("axios");
+// const axios = require("axios");
 var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -12,17 +12,9 @@ app.use("/show",express.static("./public"))
 
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-
-const util = require('util')
-
-
-
 app.set("view engine", "handlebars");
 
 
-app.get("/homeMockUp", function(req, res) {
-    res.sendFile(path.join(__dirname, "./public/homeMockup.html"));
-});
 var router = require('./controllers/todosController');
 var formRouter = require('./controllers/formController');
 var showRouter = require('./controllers/showController');
